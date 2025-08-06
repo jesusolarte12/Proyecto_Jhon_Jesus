@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuevo Rol</title>
+</head>
+<body>
+  <h1>Agregar nuevo rol</h1>
+
+  <form id="form-rol">
+    <label for="rol">Rol:
+      <input type="text" id="rol" name="rol" placeholder="Ingrese el nuevo ROL" required>
+    </label>
+    <input type="submit" value="Guardar Rol">
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script>
+    document.getElementById('form-rol').addEventListener('submit', function (e) {
+      e.preventDefault(); // Evita recargar la página
+
+      const rol = document.getElementById('rol').value;
+
+      fetch('/api/new/rol', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ rol })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Error al guardar");
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById('mensaje').textContent = `✅ Rol "${data.rol}" guardado con ID ${data.id}`;
+        document.getElementById('form-rol').reset();
+      })
+      .catch(err => {
+        document.getElementById('mensaje').textContent = `❌ Error: ${err.message}`;
+      });
+    });
+  </script>
+</body>
+</html>

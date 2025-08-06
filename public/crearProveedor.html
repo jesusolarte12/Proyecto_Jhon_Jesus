@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuevo Empleado</title>
+</head>
+<body>
+  <h1>Agregar nuevo Proveedor</h1>
+
+  <form id="form-empleado">
+    <label for="empleado">Nombre:
+      <input type="text" id="empleado" name="empleado" placeholder="Ingrese el nuevo Empleado" required>
+    </label>
+    <label for="telefono">Telefono:
+      <input type="text" id="telefono" name="telefono" placeholder="Ingrese el telefono" required>
+    </label>
+    <label for="correo">Correo:
+      <input type="email" id="correo" name="correo" placeholder="Ingrese el correo" required>
+    </label>
+    <label for="rol">Rol:
+      <select id="rol">
+        <option value="0">Seleccione un rol</option>
+      </select>
+    </label>
+    <input type="submit" value="Guardar empleado">
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async ()=>{
+      await fetch('/api/get_roles/')
+      .then(res =>{
+        if (!res.ok) throw new Error("Error al guardar");
+        return res.json();
+      })
+      .then(data =>{
+        console.log(data)
+        let selectRol = document.getElementById("rol")
+        data.forEach(rol => {
+          let opcion = document.createElement("option")
+          opcion.value = rol.id;
+          opcion.textContent = rol.rol;
+          selectRol.appendChild(opcion);   
+        });
+      })
+    })
+    document.getElementById('form-empleado').addEventListener('submit', function (e) {
+      e.preventDefault(); // Evita recargar la página
+
+      const empleado = document.getElementById('empleado').value;
+      const telefono = document.getElementById('telefono').value;
+      const correo = document.getElementById('correo').value;
+      const rol = document.getElementById('rol').value;
+
+      fetch('/api/new/empleado', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ empleado,telefono,correo,rol })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Error al guardar");
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById('mensaje').textContent = `✅ Empleado "${data.empleado}" guardado con ID ${data.id}`;
+        document.getElementById('form-empleado').reset();
+      })
+      .catch(err => {
+        document.getElementById('mensaje').textContent = `❌ Error: ${err.message}`;
+      });
+    });
+  </script>
+</body>
+</html>
