@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS mantenimientos (
     fecha_mantenimiento DATE NOT NULL,
     observaciones TEXT,
     costo DECIMAL(10,2) NOT NULL,
-    id_maquina INTEGER NOT NULL,
     acto_funcionamiento BOOLEAN NOT NULL,
+    id_maquina INTEGER NOT NULL,
     FOREIGN KEY (id_maquina) REFERENCES maquinaria(id)
 );
 
