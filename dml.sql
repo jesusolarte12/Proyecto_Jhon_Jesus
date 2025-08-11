@@ -1,7 +1,8 @@
 -- *************** Registro base de datos "Finca" ***************
+use finca;
 
 -- Tabla roles
-INSERT INTO roles (rol) VALUES 
+INSERT INTO rol (rol) VALUES 
 ('Administrador'),
 ('Supervisor de campo'),
 ('Ingeniero Agrónomo'),
@@ -13,8 +14,8 @@ INSERT INTO roles (rol) VALUES
 ('Técnico de mantenimiento'),
 ('Asistente administrativo');
 
--- Tabla empleados
-INSERT INTO empleados (nombre, telefono, correo, rol) VALUES
+-- Tabla empleado
+INSERT INTO empleado (nombre, telefono, correo, rol) VALUES
 ('Carlos Pérez', '3001234567', 'carlos.perez@finca.com', 1),
 ('Ana Gómez', '3002345678', 'ana.gomez@finca.com', 2),
 ('Luis Rodríguez', '3013456789', 'luis.rodriguez@finca.com', 3),
@@ -67,7 +68,7 @@ INSERT INTO empleados (nombre, telefono, correo, rol) VALUES
 ('Rosa Mejía', '3081011125', 'rosa.mejia@finca.com', 10);
 
 -- Tabla proveedores
-INSERT INTO proveedores (nombre, telefono, correo, nit, descripcion) VALUES
+INSERT INTO proveedor (nombre, telefono, correo, nit, descripcion) VALUES
 ('AgroFert S.A.S.', '3101234567', 'contacto@agrofert.com', '800123001', 'Proveedor de fertilizantes orgánicos.'),
 ('MaquiAndes Ltda.', '3112345678', 'ventas@maquiandes.com', '800123002', 'Venta de maquinaria agrícola pesada.'),
 ('Semillas del Valle', '3123456789', 'info@semillasvalle.com', '800123003', 'Suministro de semillas certificadas.'),
@@ -120,57 +121,57 @@ INSERT INTO proveedores (nombre, telefono, correo, nit, descripcion) VALUES
 ('AgroEmprende', '3590123456', 'contacto@agroemprende.com', '800123050', 'Insumos para pequeños productores.');
 
 -- Tabla clientes
-INSERT INTO clientes (nombre, telefono, correo, nit, descripcion) VALUES
-('Comercializadora La Huerta', '3001112233', 'contacto@lahuerta.com', '900001001', 'Mayorista de frutas y verduras.'),
-('Tienda Don Pepe', '3002223344', 'donpepe@tienda.com', '900001002', 'Tienda minorista de barrio.'),
-('Distribuciones Campesinas', '3003334455', 'info@campesinas.com', '900001003', 'Distribuidor regional de productos agrícolas.'),
-('Supermercado El Campo', '3004445566', 'compras@elcampo.com', '900001004', 'Cadena de supermercados.'),
-('Frutas del Valle S.A.S.', '3005556677', 'ventas@frutasdelvalle.com', '900001005', 'Venta de frutas tropicales.'),
-('AgroCompras Ltda.', '3006667788', 'contacto@agrocompras.com', '900001006', 'Mayorista del sector agrícola.'),
-('Central de Abastos Bogotá', '3007778899', 'info@cab.com', '900001007', 'Centro de distribución mayorista.'),
-('Exportadora Verde', '3008889900', 'exportaciones@verde.com', '900001008', 'Exportación de productos frescos.'),
-('Verduras Rápidas', '3009990011', 'ventas@rapidas.com', '900001009', 'Distribuidor de verduras listas para consumir.'),
-('Productos Orgánicos S.A.', '3011112233', 'organicos@productos.com', '900001010', 'Cliente ecológico.'),
-('Mercado Rural Ltda.', '3012223344', 'info@mercadorural.com', '900001011', 'Comprador mayorista rural.'),
-('Frutas y Más', '3013334455', 'ventas@frutasy.com', '900001012', 'Distribuidor de frutas frescas.'),
-('Super Tienda La 14', '3014445566', 'contacto@la14.com', '900001013', 'Cadena de supermercados del sur.'),
-('Alimentos La Esperanza', '3015556677', 'esperanza@alimentos.com', '900001014', 'Tienda de abarrotes.'),
-('Granja Tienda Natural', '3016667788', 'granjatienda@natural.com', '900001015', 'Venta de productos naturales.'),
-('Comercial AgroUrbana', '3017778899', 'info@agrourbana.com', '900001016', 'Ventas en zona urbana.'),
-('BioMarket Colombia', '3018889900', 'biomarket@colombia.com', '900001017', 'Productos orgánicos al por mayor.'),
-('Mercado Popular', '3019990011', 'ventas@mercadopopular.com', '900001018', 'Comprador minorista frecuente.'),
-('Central Frutera', '3021112233', 'frutera@central.com', '900001019', 'Distribución de frutas.'),
-('Tiendas Los Andes', '3022223344', 'compras@losandes.com', '900001020', 'Cadena de tiendas regionales.'),
-('Frutas Selectas Ltda.', '3023334455', 'info@selectas.com', '900001021', 'Distribuidor de frutas de exportación.'),
-('HiperCampo', '3024445566', 'hiper@campo.com', '900001022', 'Hipermercado agroalimentario.'),
-('Mercado de la Sabana', '3025556677', 'sabana@mercado.com', '900001023', 'Centro de ventas mayoristas.'),
-('Súper Verduras', '3026667788', 'super@verduras.com', '900001024', 'Ventas al por menor.'),
-('Consorcio AgroAlianza', '3027778899', 'contacto@agroalianza.com', '900001025', 'Grupo de compradores organizados.'),
-('Almacén El Sembrador', '3028889900', 'ventas@sembrador.com', '900001026', 'Almacén agrícola urbano.'),
-('Campo Sano S.A.S.', '3029990011', 'compras@camposano.com', '900001027', 'Productos agrícolas orgánicos.'),
-('Fruver Express', '3031112233', 'express@fruver.com', '900001028', 'Venta express de frutas y verduras.'),
-('Distribuidora Al Campo', '3032223344', 'alcampo@distribuidora.com', '900001029', 'Mayorista de productos agrícolas.'),
-('Verdulería El Edén', '3033334455', 'eden@verduleria.com', '900001030', 'Pequeño comercio local.'),
-('Tienda Natural Andes', '3034445566', 'andes@natural.com', '900001031', 'Clientes enfocados en lo ecológico.'),
-('Mercado BioAndes', '3035556677', 'bio@andes.com', '900001032', 'Clientes bio y sostenibles.'),
-('Frescamp S.A.', '3036667788', 'ventas@frescamp.com', '900001033', 'Alimentos frescos de campo.'),
-('EcoTienda Verde', '3037778899', 'eco@tiendaverde.com', '900001034', 'Venta de productos eco.'),
-('Super Agromercado', '3038889900', 'compras@agromercado.com', '900001035', 'Clientes grandes consumidores.'),
-('Frutas y Verduras Sanas', '3039990011', 'sanasy@frutas.com', '900001036', 'Venta de productos saludables.'),
-('Distribuciones El Trigal', '3041112233', 'eltrigal@distribuciones.com', '900001037', 'Ventas a restaurantes.'),
-('Alimentos Rurales S.A.S.', '3042223344', 'info@rurales.com', '900001038', 'Provisión en zona rural.'),
-('Tienda AgroEficiente', '3043334455', 'agroeficiente@tienda.com', '900001039', 'Tienda autoservicio agrícola.'),
-('La Placita Natural', '3044445566', 'ventas@laplacita.com', '900001040', 'Cliente minorista.'),
-('Finca Gourmet', '3045556677', 'gourmet@finca.com', '900001041', 'Compradores premium.'),
-('Abastos del Sur', '3046667788', 'sur@abastos.com', '900001042', 'Clientes mayoristas del sur.'),
-('Alimentos de la Tierra', '3047778899', 'tierra@alimentos.com', '900001043', 'Productos naturales en volumen.'),
-('Hortalizas y Más', '3048889900', 'hortalizasymas@ventas.com', '900001044', 'Venta de hortalizas variadas.'),
-('AgroBásicos S.A.S.', '3049990011', 'contacto@agrobasicos.com', '900001045', 'Clientes constantes.'),
-('Cooperativa Frutera Nacional', '3051112233', 'cooperativa@frutera.com', '900001046', 'Asociación compradora.'),
-('Zona Verde Colombia', '3052223344', 'ventas@zonaverde.com', '900001047', 'Compradores de productos bio.'),
-('Campo Rico E.U.', '3053334455', 'info@camporico.com', '900001048', 'Clientes pequeños distribuidores.'),
-('AgroTienda 24h', '3054445566', 'contacto@agro24.com', '900001049', 'Compras continuas.'),
-('Distribuidora Norte Verde', '3055556677', 'norteverde@ventas.com', '900001050', 'Zona norte del país.');
+INSERT INTO cliente (nombre, telefono, correo, nit, descripcion) VALUES
+('Juan Pérez', '3001112233', 'juan.perez@email.com', '900001001', 'Cliente frecuente de frutas y verduras.'),
+('María López', '3002223344', 'maria.lopez@email.com', '900001002', 'Compradora minorista de barrio.'),
+('Carlos Rodríguez', '3003334455', 'carlos.rodriguez@email.com', '900001003', 'Cliente regional de productos agrícolas.'),
+('Ana Gómez', '3004445566', 'ana.gomez@email.com', '900001004', 'Compradora de cadena de supermercados.'),
+('Pedro Martínez', '3005556677', 'pedro.martinez@email.com', '900001005', 'Compra frutas tropicales al por mayor.'),
+('Sofía Torres', '3006667788', 'sofia.torres@email.com', '900001006', 'Cliente mayorista del sector agrícola.'),
+('Luis Ramírez', '3007778899', 'luis.ramirez@email.com', '900001007', 'Cliente de centro de distribución mayorista.'),
+('Valentina Díaz', '3008889900', 'valentina.diaz@email.com', '900001008', 'Compra productos frescos para exportar.'),
+('Andrés Hernández', '3009990011', 'andres.hernandez@email.com', '900001009', 'Compra verduras listas para consumir.'),
+('Paula Morales', '3011112233', 'paula.morales@email.com', '900001010', 'Cliente interesado en productos ecológicos.'),
+('Felipe Castro', '3012223344', 'felipe.castro@email.com', '900001011', 'Comprador mayorista rural.'),
+('Camila Suárez', '3013334455', 'camila.suarez@email.com', '900001012', 'Distribuidora de frutas frescas.'),
+('Hernán Vargas', '3014445566', 'hernan.vargas@email.com', '900001013', 'Comprador para supermercado regional.'),
+('Laura Fernández', '3015556677', 'laura.fernandez@email.com', '900001014', 'Cliente de abarrotes y alimentos.'),
+('Mateo Silva', '3016667788', 'mateo.silva@email.com', '900001015', 'Compra productos naturales.'),
+('Isabela Rojas', '3017778899', 'isabela.rojas@email.com', '900001016', 'Cliente urbano de frutas y verduras.'),
+('Sebastián Cárdenas', '3018889900', 'sebastian.cardenas@email.com', '900001017', 'Compra productos orgánicos al por mayor.'),
+('Gabriela Castro', '3019990011', 'gabriela.castro@email.com', '900001018', 'Compradora frecuente de verduras.'),
+('Diego Ortega', '3021112233', 'diego.ortega@email.com', '900001019', 'Distribuidor de frutas frescas.'),
+('Natalia Reyes', '3022223344', 'natalia.reyes@email.com', '900001020', 'Cliente regional de productos agrícolas.'),
+('Santiago Prieto', '3023334455', 'santiago.prieto@email.com', '900001021', 'Exportador de frutas.'),
+('Daniela Mendoza', '3024445566', 'daniela.mendoza@email.com', '900001022', 'Cliente mayorista agroalimentario.'),
+('Tomás Jiménez', '3025556677', 'tomas.jimenez@email.com', '900001023', 'Comprador mayorista en zona rural.'),
+('Mariana Figueroa', '3026667788', 'mariana.figueroa@email.com', '900001024', 'Compradora de verduras frescas.'),
+('Julián Guerrero', '3027778899', 'julian.guerrero@email.com', '900001025', 'Cliente organizador de compras.'),
+('Valeria Soto', '3028889900', 'valeria.soto@email.com', '900001026', 'Cliente urbano de almacén agrícola.'),
+('Cristian Mejía', '3029990011', 'cristian.mejia@email.com', '900001027', 'Comprador de productos orgánicos.'),
+('Lorena Campos', '3031112233', 'lorena.campos@email.com', '900001028', 'Cliente express de frutas y verduras.'),
+('Fernando Ruiz', '3032223344', 'fernando.ruiz@email.com', '900001029', 'Mayorista de productos agrícolas.'),
+('Adriana Salazar', '3033334455', 'adriana.salazar@email.com', '900001030', 'Comerciante local de verduras.'),
+('José Patiño', '3034445566', 'jose.patino@email.com', '900001031', 'Cliente enfocado en productos ecológicos.'),
+('Mónica Villalba', '3035556677', 'monica.villalba@email.com', '900001032', 'Consumidora de productos sostenibles.'),
+('Andrés Lozano', '3036667788', 'andres.lozano@email.com', '900001033', 'Comprador de alimentos frescos.'),
+('Claudia Parra', '3037778899', 'claudia.parra@email.com', '900001034', 'Cliente eco responsable.'),
+('Oscar Torres', '3038889900', 'oscar.torres@email.com', '900001035', 'Gran consumidor agroalimentario.'),
+('Sara Nieto', '3039990011', 'sara.nieto@email.com', '900001036', 'Compradora de productos saludables.'),
+('Ricardo Peña', '3041112233', 'ricardo.pena@email.com', '900001037', 'Proveedor a restaurantes.'),
+('Carolina Vega', '3042223344', 'carolina.vega@email.com', '900001038', 'Compradora en zona rural.'),
+('Mauricio Gil', '3043334455', 'mauricio.gil@email.com', '900001039', 'Cliente de autoservicio agrícola.'),
+('Tatiana Navarro', '3044445566', 'tatiana.navarro@email.com', '900001040', 'Cliente minorista de abarrotes.'),
+('Pablo Bonilla', '3045556677', 'pablo.bonilla@email.com', '900001041', 'Comprador gourmet de frutas y verduras.'),
+('Inés Montoya', '3046667788', 'ines.montoya@email.com', '900001042', 'Mayorista del sur del país.'),
+('Camilo Vargas', '3047778899', 'camilo.vargas@email.com', '900001043', 'Cliente mayorista de productos naturales.'),
+('Patricia Luna', '3048889900', 'patricia.luna@email.com', '900001044', 'Compradora de hortalizas variadas.'),
+('Fabián Duarte', '3049990011', 'fabian.duarte@email.com', '900001045', 'Cliente recurrente.'),
+('Beatriz Herrera', '3051112233', 'beatriz.herrera@email.com', '900001046', 'Miembro de cooperativa frutera.'),
+('Hugo Beltrán', '3052223344', 'hugo.beltran@email.com', '900001047', 'Comprador de productos bio.'),
+('Esteban Cifuentes', '3053334455', 'esteban.cifuentes@email.com', '900001048', 'Pequeño distribuidor.'),
+('Rosa Álvarez', '3054445566', 'rosa.alvarez@email.com', '900001049', 'Compradora frecuente.'),
+('Martín Ramírez', '3055556677', 'martin.ramirez@email.com', '900001050', 'Cliente de la zona norte.');
 
 -- Tabla maquinaria
 INSERT INTO maquinaria (nombre, anio_compra, modelo, seguro_soat, tecnomecanica, descripcion, activa) VALUES
@@ -226,7 +227,7 @@ INSERT INTO maquinaria (nombre, anio_compra, modelo, seguro_soat, tecnomecanica,
 ('Cosechadora MultiCrop', 2022, 'MC900', '2025-05-08', '2025-05-09', 'Versátil para varios cultivos', 1);
 
 -- Tabla servicios
-INSERT INTO servicios (servicio) VALUES
+INSERT INTO servicio (servicio) VALUES
 ('Riego'),
 ('Fumigación'),
 ('Abonado'),
@@ -332,7 +333,7 @@ INSERT INTO uso_maquinaria (fecha_uso, observaciones, costo_uso, tipo_servicio, 
 ('2025-02-19', 'Revisión técnica posterior al uso.', 140000.00, 50, 10, 10);
 
 -- Tabla mantenimientos
-INSERT INTO mantenimientos (fecha_mantenimiento, observaciones, costo, acto_funcionamiento, id_maquina) VALUES
+INSERT INTO mantenimiento (fecha_mantenimiento, observaciones, costo, acto_funcionamiento, id_maquina) VALUES
 ('2025-01-10', 'Cambio de aceite general', 150.00, 1, 1),
 ('2025-01-15', 'Revisión de frenos', 90.00, 1, 2),
 ('2025-01-20', 'Reparación de motor', 800.00, 1, 3),
@@ -385,7 +386,7 @@ INSERT INTO mantenimientos (fecha_mantenimiento, observaciones, costo, acto_func
 ('2025-08-10', 'Revisión final de maquinaria', 95.00, 1, 50);
 
 -- Tabla pagos_mantenimientos
-INSERT INTO pagos_mantenimientos (fecha_pago, tipo_pago, valor, id_mantenimiento) VALUES
+INSERT INTO pago_mantenimiento (fecha_pago, tipo_pago, valor, id_mantenimiento) VALUES
 ('2025-01-10', 'Efectivo', 350000.00, 1),
 ('2025-01-15', 'Transferencia', 420000.00, 2),
 ('2025-01-20', 'Cheque', 300000.00, 3),
@@ -438,7 +439,7 @@ INSERT INTO pagos_mantenimientos (fecha_pago, tipo_pago, valor, id_mantenimiento
 ('2025-05-26', 'Transferencia', 470000.00, 50);
 
 -- Tabla productos
-INSERT INTO productos (nombre, stock, precio_venta) VALUES
+INSERT INTO producto (nombre, stock, precio_venta) VALUES
 ('Abono orgánico', 120, 35000.00),
 ('Fertilizante nitrogenado', 80, 45000.00),
 ('Insecticida natural', 50, 38000.00),
@@ -492,7 +493,7 @@ INSERT INTO productos (nombre, stock, precio_venta) VALUES
 ('Marcador de surcos', 12, 60000.00);
 
 -- Tabla entradas
-INSERT INTO entradas (cantidad, precio_compra, precio_venta, id_producto, id_proveedor, id_empleado) VALUES
+INSERT INTO entrada (cantidad, precio_compra, precio_venta, id_producto, id_proveedor, id_empleado) VALUES
 (10, 1500.00, 2000.00, 1, 1, 1),
 (15, 1400.00, 2100.00, 2, 2, 2),
 (8,  1300.00, 1800.00, 3, 3, 3),
@@ -545,7 +546,7 @@ INSERT INTO entradas (cantidad, precio_compra, precio_venta, id_producto, id_pro
 (12, 4200.00, 5400.00, 50, 50, 50);
 
 -- Tabla ventas
-INSERT INTO ventas (total_venta, fecha_venta, id_empleado, id_cliente) VALUES
+INSERT INTO venta (total_venta, fecha_venta, id_empleado, id_cliente) VALUES
 (150000.00, '2025-08-01', 1, 3),
 (234500.50, '2025-08-02', 2, 5),
 (74500.00,  '2025-08-03', 3, 1),
@@ -556,7 +557,6 @@ INSERT INTO ventas (total_venta, fecha_venta, id_empleado, id_cliente) VALUES
 (100000.00, '2025-08-01', 3, 4),
 (125000.25, '2025-08-01', 4, 6),
 (175000.80, '2025-08-02', 5, 9),
-
 (65000.00,  '2025-08-02', 1, 1),
 (330000.00, '2025-08-03', 2, 2),
 (275000.10, '2025-08-04', 3, 3),
@@ -567,7 +567,6 @@ INSERT INTO ventas (total_venta, fecha_venta, id_empleado, id_cliente) VALUES
 (190000.00, '2025-08-02', 3, 8),
 (220000.00, '2025-08-03', 4, 9),
 (305000.00, '2025-08-04', 5, 10),
-
 (45000.00,  '2025-08-05', 1, 1),
 (99000.00,  '2025-08-06', 2, 2),
 (105000.00, '2025-08-07', 3, 3),
@@ -578,7 +577,6 @@ INSERT INTO ventas (total_venta, fecha_venta, id_empleado, id_cliente) VALUES
 (157500.25, '2025-08-05', 3, 8),
 (187000.00, '2025-08-06', 4, 9),
 (210000.00, '2025-08-07', 5, 10),
-
 (134000.00, '2025-08-01', 1, 1),
 (120000.00, '2025-08-02', 2, 2),
 (89000.00,  '2025-08-03', 3, 3),
@@ -589,7 +587,6 @@ INSERT INTO ventas (total_venta, fecha_venta, id_empleado, id_cliente) VALUES
 (119000.00, '2025-08-01', 3, 8),
 (130000.00, '2025-08-02', 4, 9),
 (140000.00, '2025-08-03', 5, 10),
-
 (152000.00, '2025-08-04', 1, 2),
 (172500.00, '2025-08-05', 2, 3),
 (181000.00, '2025-08-06', 3, 4),
@@ -602,7 +599,7 @@ INSERT INTO ventas (total_venta, fecha_venta, id_empleado, id_cliente) VALUES
 (265000.00, '2025-08-06', 5, 1);
 
 -- Tabla detalle_ventas
-INSERT INTO detalle_ventas (cantidad_venta, id_venta, id_producto) VALUES
+INSERT INTO detalle_venta (cantidad_venta, id_venta, id_producto) VALUES
 (10, 38, 24),
 (4, 34, 6),
 (10, 15, 38),
@@ -708,7 +705,7 @@ INSERT INTO tipo_pago (nombre_pago) VALUES
 ('Pago presencial');
 
 -- Tabla detalles_ventas_pagos
-INSERT INTO detalles_ventas_pagos (fecha_pago, id_venta, id_tipo_pago, monto) VALUES
+INSERT INTO detalle_venta_pago (fecha_pago, id_venta, id_tipo_pago, monto) VALUES
 ('2025-07-01', 1, 1, 150000.00),
 ('2025-07-02', 2, 2, 200000.00),
 ('2025-07-03', 3, 3, 180000.00),
