@@ -4,25 +4,25 @@ CREATE DATABASE finca;
 
 USE finca;
 
--- *****Gestion Empleados*****
+-- *****Gestion Empleado*****
 
-CREATE TABLE IF NOT EXISTS roles(
+CREATE TABLE IF NOT EXISTS rol (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	rol VARCHAR (50)
 );
 
-CREATE TABLE IF NOT EXISTS empleados (
+CREATE TABLE IF NOT EXISTS empleado (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
     correo VARCHAR(100),
-    rol int,
-    foreign key (rol) references roles (id)
+    rol INT,
+    FOREIGN KEY (rol) REFERENCES rol (id)
 );
 
--- *****Gestion Proveedores*****
+-- *****Gestion Proveedor*****
 
-CREATE TABLE IF NOT EXISTS proveedores (
+CREATE TABLE IF NOT EXISTS proveedor (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS proveedores (
     descripcion TEXT
 );
 
--- *****Gestion Clientes*****
+-- *****Gestion Cliente*****
 
-CREATE TABLE IF NOT EXISTS clientes (
+CREATE TABLE IF NOT EXISTS cliente (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS maquinaria (
     activa BOOLEAN NOT NULL DEFAULT 1
 );
 
-CREATE TABLE IF NOT EXISTS servicios (
+CREATE TABLE IF NOT EXISTS servicio (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     servicio VARCHAR(100) NOT NULL
 );
@@ -67,12 +67,12 @@ CREATE TABLE IF NOT EXISTS uso_maquinaria (
     tipo_servicio INTEGER NOT NULL,
     id_maquinaria INTEGER NOT NULL,
     id_empleado INTEGER NOT NULL,
-    FOREIGN KEY (tipo_servicio) REFERENCES servicios(id),
+    FOREIGN KEY (tipo_servicio) REFERENCES servicio(id),
     FOREIGN KEY (id_maquinaria) REFERENCES maquinaria(id),
-    FOREIGN KEY (id_empleado) REFERENCES empleados(id)
+    FOREIGN KEY (id_empleado) REFERENCES empleado(id)
 );
 
-CREATE TABLE IF NOT EXISTS mantenimientos (
+CREATE TABLE IF NOT EXISTS mantenimiento (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     fecha_mantenimiento DATE NOT NULL,
     observaciones TEXT,
@@ -82,25 +82,25 @@ CREATE TABLE IF NOT EXISTS mantenimientos (
     FOREIGN KEY (id_maquina) REFERENCES maquinaria(id)
 );
 
-CREATE TABLE IF NOT EXISTS pagos_mantenimientos (
+CREATE TABLE IF NOT EXISTS pago_mantenimiento (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     fecha_pago DATE NOT NULL,
     tipo_pago VARCHAR(50) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
     id_mantenimiento INTEGER NOT NULL,
-    FOREIGN KEY (id_mantenimiento) REFERENCES mantenimientos(id)
+    FOREIGN KEY (id_mantenimiento) REFERENCES mantenimiento(id)
 );
 
 -- *****Gestion Inventario*****
 
-CREATE TABLE IF NOT EXISTS productos (
+CREATE TABLE IF NOT EXISTS producto (
     codigo INTEGER PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     stock INTEGER NOT NULL,
     precio_venta DECIMAL(10,2) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS entradas (
+CREATE TABLE IF NOT EXISTS entrada (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     cantidad INTEGER NOT NULL,
     precio_compra DECIMAL(10,2) NOT NULL,
@@ -108,30 +108,30 @@ CREATE TABLE IF NOT EXISTS entradas (
     id_producto INTEGER NOT NULL,
     id_proveedor INTEGER NOT NULL,
     id_empleado INTEGER NOT NULL,
-    FOREIGN KEY (id_producto) REFERENCES productos(codigo),
-    FOREIGN KEY (id_proveedor) REFERENCES proveedores(id),
-    FOREIGN KEY (id_empleado) REFERENCES empleados(id)
+    FOREIGN KEY (id_producto) REFERENCES producto(codigo),
+    FOREIGN KEY (id_proveedor) REFERENCES proveedor(id),
+    FOREIGN KEY (id_empleado) REFERENCES empleado(id)
 );
 
--- *****Gestion Ventas*****
+-- *****Gestion Venta*****
 
-CREATE TABLE IF NOT EXISTS ventas (
+CREATE TABLE IF NOT EXISTS venta (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     total_venta DECIMAL(10,2) NOT NULL,
     fecha_venta DATE NOT NULL,
     id_empleado INTEGER NOT NULL,
     id_cliente INTEGER NOT NULL,
-    FOREIGN KEY (id_empleado) REFERENCES empleados(id),
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id)
+    FOREIGN KEY (id_empleado) REFERENCES empleado(id),
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id)
 );
 
-CREATE TABLE IF NOT EXISTS detalle_ventas (
+CREATE TABLE IF NOT EXISTS detalle_venta (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     cantidad_venta INTEGER NOT NULL,
     id_venta INTEGER NOT NULL,
     id_producto INTEGER NOT NULL,
-    FOREIGN KEY (id_venta) REFERENCES ventas(id),
-    FOREIGN KEY (id_producto) REFERENCES productos(codigo)
+    FOREIGN KEY (id_venta) REFERENCES venta(id),
+    FOREIGN KEY (id_producto) REFERENCES producto(codigo)
 );
 
 CREATE TABLE IF NOT EXISTS tipo_pago (
@@ -139,12 +139,12 @@ CREATE TABLE IF NOT EXISTS tipo_pago (
     nombre_pago VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS detalles_ventas_pagos (
+CREATE TABLE IF NOT EXISTS detalle_venta_pago (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     fecha_pago DATE NOT NULL,
     id_venta INTEGER NOT NULL,
     id_tipo_pago INTEGER NOT NULL,
     monto DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_venta) REFERENCES ventas(id),
+    FOREIGN KEY (id_venta) REFERENCES venta(id),
     FOREIGN KEY (id_tipo_pago) REFERENCES tipo_pago(id)
 );
