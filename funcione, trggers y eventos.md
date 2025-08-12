@@ -1,102 +1,70 @@
-📑Funciones, Triggers y Eventos en el Proyecto “Finca”
-Índice
+# 📑 Funciones, Triggers y Eventos en el Proyecto “Finca”
 
-Resumen
+## 📌 Índice
+1. [Resumen](#resumen)
+2. [Funciones SQL](#funciones-sql)
+3. [Triggers (Disparadores)](#triggers-disparadores)
+4. [Eventos SQL](#eventos-sql)
 
-Funciones SQL
+---
 
-Triggers (Disparadores)
+<h2 id="resumen">🟩 Resumen</h2>
+Este documento detalla el desarrollo y finalidad de **funciones**, **triggers** y **eventos SQL** en la base de datos **"Finca"**, los componentes clave para la automatización, control de integridad y generación automática de reportes.
 
-Eventos SQL
+Con estos bloques, la base logra:
+- Automatizar procesos agrícolas.
+- Mejorar la trazabilidad.
+- Optimizar la gestión diaria de la información.
 
-Cómo Consultar y Probar
+---
 
-🟩 Resumen
-Este documento detalla el desarrollo y finalidad de funciones, triggers y eventos SQL en la base de datos "Finca", los componentes clave para la automatización, control de integridad y generación automática de reportes.
-Con estos bloques, la base logra automatizar procesos agrícolas, mejorar la trazabilidad y optimizar la gestión diaria de la información.
-
-🧮 Funciones SQL
+<h2 id="funciones-sql">🧮 Funciones SQL</h2>
 Las funciones permiten realizar cálculos rápidos y reutilizables en consultas, reportes y procedimientos, añadiendo inteligencia y ahorro de tiempo.
 
-20 funciones personalizadas, entre ellas:
+**Cantidad:** 20 funciones personalizadas.
 
-Cálculos financieros, como utilidad por producto, margen bruto, ventas diarias, mensuales y históricas.
+**Principales usos:**
+- **Cálculos financieros:** utilidad por producto, margen bruto, ventas diarias, mensuales e históricas.
+- **Consultas operativas:** stock disponible, clientes frecuentes, producto con más/menos stock.
+- **Auditoría y monitorización:** último mantenimiento de maquinaria, diferencia con stock ideal, ventas por empleado.
 
-Consultas operativas, como stock disponible, clientes frecuentes, producto con más/menos stock.
+**Aportes:**
+- Generación de reportes dinámicos.
+- Validaciones y comparaciones en tiempo real.
+- Integración con vistas, procedimientos y eventos para cálculos automáticos.
 
-Funciones de auditoría y monitorización, como último mantenimiento de maquinaria, diferencia con stock ideal, ventas de empleados.
+---
 
-Aportes:
+<h2 id="triggers-disparadores">⚡ Triggers (Disparadores)</h2>
+Reglas automáticas que se ejecutan ante cambios en las tablas. Protegen la integridad de los datos y generan auditoría sin intervención manual.
 
-Permiten generar reportes dinámicos y realizar validaciones/comparaciones en tiempo real.
+**Cantidad:** 20 triggers implementados.
 
-Se integran fácilmente en vistas, procedimientos y eventos para automatizar cálculos.
+**Principales usos:**
+- **Automatización de inventario:** descuentan stock tras ventas, aumentan tras compras y previenen inventario negativo.
+- **Auditoría y trazabilidad:** registran cambios en empleados, productos, precios, clientes, proveedores, ventas y mantenimientos.
+- **Control de operaciones críticas:** validación de pagos negativos, marcado de maquinaria como inactiva según mantenimientos.
+- **Generación de históricos:** de actualizaciones, eliminaciones e inserciones importantes.
 
-⚡ Triggers (Disparadores)
-Son reglas automáticas que se ejecutan ante cambios en las tablas, protegen la integridad de los datos y generan auditoría sin intervención manual.
+**Aportes:**
+- Mayor seguridad y confiabilidad.
+- Histórico y rastreo de acciones clave.
+- Automatización que ahorra tiempo y reduce errores humanos.
 
-20 triggers implementados, incluyen:
+---
 
-Automatización de inventario: Descuentan stock tras las ventas, lo aumentan tras compras y previenen inventario negativo.
+<h2 id="eventos-sql">⏰ Eventos SQL</h2>
+Tareas programadas que se ejecutan automáticamente en la base de datos, sin intervención humana.
 
-Auditoría y trazabilidad: Registran cambios en empleados, productos, precios, clientes, proveedores, ventas, mantenimientos.
+**Cantidad:** 20 eventos programados.
 
-Control de operaciones críticas: Validan pagos negativos, marcan maquinaria como inactiva tras mantenimientos determinados.
+**Principales usos:**
+- **Reportes periódicos:** ventas, mantenimiento, maquinaria inactiva, ingresos/egresos, clientes y productos destacados (mensual, diario y semanal).
+- **Mantenimiento automático:** limpieza de auditorías, corrección de stocks negativos, actualización de precios y salarios.
+- **Alertas:** por stock bajo, ventas altas, productos más vendidos, proveedores/clientes inactivos.
+- **Actualizaciones automáticas:** inventario desde compras, eliminación de registros obsoletos.
 
-Generan registros históricos: De actualizaciones, eliminaciones e inserciones importantes para el análisis posterior.
-
-Aportes:
-
-Mejoran la seguridad y confiabilidad.
-
-Mantienen histórico y rastreo de acciones clave.
-
-Automatizan la gestión diaria, ahorrando tiempo y evitando errores humanos.
-
-⏰ Eventos SQL
-Permiten programar tareas recurrentes en la base sin intervención humana, ideal para reportes, limpieza de datos, alertas y actualizaciones periódicas.
-
-20 eventos programados como:
-
-Reportes Mensuales, Diarios y Semanales: Ventas, mantenimiento, maquinaria inactiva, ingresos/egresos, clientes y productos top.
-
-Mantenimiento automático: Limpieza de auditorías, corrección de stocks negativos, actualización de precios y salarios.
-
-Alertas: Por stock bajo, ventas altas, productos más vendidos, proveedores/clientes inactivos.
-
-Actualizaciones automáticas: Inventario desde compras, eliminación de registros obsoletos.
-
-Aportes:
-
-Garantizan el mantenimiento, actualización y seguridad de la información a lo largo del tiempo.
-
-Generan información clave de manera automática, útil para informes, toma de decisiones y evidencias.
-
-🛠️ Cómo Consultar y Probar
-Usa los siguientes comandos para revisar cada componente:
-
-Funciones:
-
-text
-SHOW FUNCTION STATUS WHERE Db = 'finca';
-Consulta funciones disponibles.
-
-Triggers:
-
-text
-SHOW TRIGGERS FROM finca;
-Lista los disparadores creados.
-
-Eventos:
-
-text
-SHOW EVENTS FROM finca;
-Lista los eventos programados.
-
-Recomendación:
-Antes de usar eventos, asegúrate de activar el programador:
-
-text
-SET GLOBAL event_scheduler = ON;
-🚀 Conclusión
-Gracias a la integración de funciones, triggers, y eventos, el modelo de datos es mucho más automatizado, protegido y listo para la gestión agrícola moderna, la generación de reportes automáticos y la auditoría regulatoria y académica.
+**Aportes:**
+- Mantenimiento y actualización continua.
+- Generación de información clave para informes y decisiones.
+- Evidencias automáticas para auditorías.
