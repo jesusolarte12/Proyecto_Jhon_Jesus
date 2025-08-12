@@ -83,3 +83,8 @@ Roles definidos
 4. Encargado de Inventario → Gestión de productos, entradas y stock.
 
 4. Supervisor de Campo → Registro y seguimiento de maquinaria, mantenimiento y producción agrícola.
+
+## 👥 Colaboradores
+
+- Jesús David Olarte Landinez
+- Jhon Fredy León
