@@ -148,3 +148,70 @@ CREATE TABLE IF NOT EXISTS detalle_venta_pago (
     FOREIGN KEY (id_venta) REFERENCES venta(id),
     FOREIGN KEY (id_tipo_pago) REFERENCES tipo_pago(id)
 );
+
+
+/* ============================
+   TABLAS COMPLEMENTARIAS PARA PRODUCCIÓN AGRÍCOLA
+   ============================ */
+
+/* 1. Catálogo de cultivos */
+CREATE TABLE IF NOT EXISTS cultivo (
+    id_cultivo INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_cultivo VARCHAR(100) NOT NULL,
+    unidad_medida VARCHAR(20) NOT NULL,  -- Ej: kg, litros
+    precio_referencia DECIMAL(10,2) DEFAULT 0
+);
+
+/* 2. Lotes o parcelas de terreno */
+CREATE TABLE IF NOT EXISTS lote (
+    id_lote INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_lote VARCHAR(100) NOT NULL,
+    hectareas DECIMAL(5,2) NOT NULL,
+    ubicacion VARCHAR(200)
+);
+
+/* 3. Registro de siembras */
+CREATE TABLE IF NOT EXISTS siembra (
+    id_siembra INT PRIMARY KEY AUTO_INCREMENT,
+    id_lote INT NOT NULL,
+    id_cultivo INT NOT NULL,
+    fecha_siembra DATE NOT NULL,
+    cantidad_sembrada DECIMAL(10,2) NOT NULL,
+    id_responsable INT NOT NULL,
+    FOREIGN KEY (id_lote) REFERENCES lote(id_lote),
+    FOREIGN KEY (id_cultivo) REFERENCES cultivo(id_cultivo),
+    FOREIGN KEY (id_responsable) REFERENCES empleado(id)
+);
+
+/* 4. Registro de cosechas */
+CREATE TABLE IF NOT EXISTS cosecha (
+    id_cosecha INT PRIMARY KEY AUTO_INCREMENT,
+    id_siembra INT NOT NULL,
+    fecha_cosecha DATE NOT NULL,
+    cantidad_cosechada DECIMAL(10,2) NOT NULL,
+    unidad_medida VARCHAR(20) NOT NULL,
+    calidad VARCHAR(50),  -- Ej: Alta, Media, Baja
+    FOREIGN KEY (id_siembra) REFERENCES siembra(id_siembra)
+);
+
+/* 5. Insumos agrícolas */
+CREATE TABLE IF NOT EXISTS insumo (
+    id_insumo INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    tipo VARCHAR(50) NOT NULL, -- fertilizante, pesticida, alimento animal, etc.
+    stock INT NOT NULL DEFAULT 0,
+    precio_unitario DECIMAL(10,2) NOT NULL
+);
+
+/* 6. Uso de insumos */
+CREATE TABLE IF NOT EXISTS uso_insumo (
+    id_uso INT PRIMARY KEY AUTO_INCREMENT,
+    id_insumo INT NOT NULL,
+    id_siembra INT NOT NULL,
+    cantidad_usada DECIMAL(10,2) NOT NULL,
+    fecha_uso DATE NOT NULL,
+    id_empleado INT NOT NULL,
+    FOREIGN KEY (id_insumo) REFERENCES insumo(id_insumo),
+    FOREIGN KEY (id_siembra) REFERENCES siembra(id_siembra),
+    FOREIGN KEY (id_empleado) REFERENCES empleado(id)
+);
